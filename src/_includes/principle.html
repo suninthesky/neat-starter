@@ -1,0 +1,54 @@
+---
+layout: default
+---
+
+<main class="container max-w-screen-xl mx-auto px-4 my-4">
+  <section class="bg-gray-100">
+    <p class="mt-20 text-2xl font-bold text-blue-400 mb-2">Principles</p>
+    <h1 class="text-5xl font-bold mb-6">{{ title }}</h1>
+    <p class="text-2xl mb-14">{{ tagline }}</p>
+  </section>
+
+  <div class="markdown markdown-table max-w-screen-lg mx-auto mb-14">
+    {{ content | safe }}
+  </div>
+
+  <section class="max-w-screen-lg mx-auto my-16">
+    <h2 class="text-2xl font-bold border-b border-black mb-10">
+      User Considerations
+    </h2>
+
+    {% for u in users %}
+    <div class="md:flex items-center mb-6">
+      <div class="md:w-1/3 text-center">
+        <img src="{{ u.icon }}" alt="" class="h-20 mx-auto mb-3" />
+        <h3 class="text-2xl font-bold">{{ u.name }}</h3>
+      </div>
+      <div class="md:w-2/3">
+        {% for c in u.considerations %}
+        <h3 class="text-xl font-bold mb-3">{{ c.title }}</h3>
+        <p class="text-lg mb-6">{{ c.description }}</p>
+        {% endfor %}
+      </div>
+    </div>
+    {% endfor %}
+  </section>
+
+  <section>
+    <h2 class="text-2xl font-bold">Design patterns for this principle</h2>
+    <p class="text-xl mb-14">Tested components to reuse in your services</p>
+
+    <div class="grid lg:grid-cols-3 md:grid-cols-2 gap-6 mb-14">
+      {% for pattern in patterns %}
+      <a
+        href="/patterns/{{ pattern.slug }}"
+        class="bg-blue-100 hover:bg-blue-200 p-5 rounded-md"
+      >
+        <img src="{{ pattern.icon}}" alt="" class="h-32 mx-auto mb-4" />
+        <h2 class="text-xl font-bold mb-3">{{ pattern.title }}</h2>
+        <p>{{ pattern.description }}</p>
+      </a>
+      {% endfor %}
+    </div>
+  </section>
+</main>

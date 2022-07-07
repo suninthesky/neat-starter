@@ -5,31 +5,94 @@ backend:
   ### enable below lines for github integration ###
   # name: github
   # repo: surjithctly/neat-starter
-media_folder: "src/static/img"
-public_folder: "/static/img"
+media_folder: "src/static/files"
+public_folder: "/static/files"
 
 # Please run "npx netlify-cms-proxy-server" for local backend
 local_backend: true
 # publish_mode: editorial_workflow
+
 collections:
-  - label: "Blog"
-    name: "blog"
-    folder: "src/posts"
+  - label: "Pages"
+    name: "pages"
+    files:
+      - label: "Home"
+        name: "home"
+        file: "src/_data/home.yaml"
+        editor:
+          preview: false
+        fields:
+          - { label: Title, name: title, widget: string }
+          - { label: Tagline, name: tagline, widget: string }
+          - label: Intro
+            name: intro
+            widget: list
+            field: { label: Paragraph, name: paragraph, widget: string }
+          - label: Shortcuts
+            name: shortcuts
+            widget: list
+            fields:
+              - { label: Title, name: title, widget: string }
+              - { label: Description, name: description, widget: string }
+              - { label: URL, name: url, widget: string }
+          - label: Logos
+            name: logos
+            widget: list
+            fields:
+              - { label: Image, name: image, widget: image }
+              - { label: Alt, name: alt, widget: string }
+              - { label: URL, name: url, widget: string }
+
+  - label: "Principles"
+    name: "principles"
+    folder: "src/principles"
     create: true
-    editor:
-      preview: false
     fields:
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Description", name: "description", widget: "string" }
-      - { label: "Author", name: "author", widget: "string" }
-      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - { label: "Tagline", name: "tagline", widget: "string" }
+      - label: "Icon"
+        name: "icon"
+        widget: "image"
       - { label: "Body", name: "body", widget: "markdown" }
-      - widget: select
-        label: "tags"
-        name: "tags"
-        multiple: true
-        create: true
-        options: ["Tags", "created", "from", "config.yml"]
+      - label: "Users"
+        name: "users"
+        widget: "list"
+        fields:
+          - { label: Name, name: name, widget: string }
+          - { label: Icon, name: icon, widget: image }
+          - label: Consideration
+            name: considerations
+            widget: list
+            fields:
+              - { label: Title, name: title, widget: string }
+              - { label: "Description", name: "description", widget: "text" }
+      - label: "Patterns"
+        name: "patterns"
+        widget: "list"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "text" }
+          - { label: "Icon", name: "icon", widget: "image" }
+          - { label: "Alt text", name: "alt", widget: "string" }
+          - label: "Pattern Page ID"
+            name: "slug"
+            widget: "relation"
+            collection: "patterns"
+            search_fields: ["title", "{{slug}}"]
+            value_field: "{{slug}}"
+            display_fields: ["{{slug}}"]
+
+  - label: "Patterns"
+    name: "patterns"
+    folder: "src/patterns"
+    create: true
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Icon", name: "icon", widget: "image" }
+      - { label: "Alt text", name: "alt", widget: "string" }
+      - { label: "Body", name: "body", widget: "markdown" }
+
   - label: "Settings"
     name: "settings"
     editor:
