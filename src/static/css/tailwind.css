@@ -5,7 +5,10 @@
 /* Custom CSS */
 
 .markdown * {
-  @apply mb-4 block;
+  @apply mb-5;
+}
+.markdown *:last-child {
+  @apply mb-0;
 }
 .markdown h2 {
   @apply text-2xl font-bold;
