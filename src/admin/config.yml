@@ -40,6 +40,19 @@ collections:
               - { label: Alt, name: alt, widget: string }
               - { label: URL, name: url, widget: string }
 
+  - label: "Components"
+    name: "components"
+    files:
+      - label: "Walkthrough banner"
+        name: "banner"
+        file: "src/_data/banner.yaml"
+        editor:
+          preview: false
+        fields:
+          - { label: Title, name: title, widget: string }
+          - { label: Walkthrough image, name: img, widget: image }
+          - { label: Walkthrough alt text, name: alt, widget: string }
+
   - label: "Principles"
     name: "principles"
     folder: "src/principles"
