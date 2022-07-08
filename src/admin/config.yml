@@ -18,16 +18,13 @@ collections:
     files:
       - label: "Home"
         name: "home"
-        file: "src/_data/home.yaml"
+        file: "src/index.md"
         editor:
           preview: false
         fields:
           - { label: Title, name: title, widget: string }
           - { label: Tagline, name: tagline, widget: string }
-          - label: Intro
-            name: intro
-            widget: list
-            field: { label: Paragraph, name: paragraph, widget: string }
+          - { label: Body, name: body, widget: markdown }
           - label: Shortcuts
             name: shortcuts
             widget: list
